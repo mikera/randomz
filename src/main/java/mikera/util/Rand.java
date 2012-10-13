@@ -49,60 +49,6 @@ public final class Rand {
 	}
 	
 	/**
-	 * Creates a random number generator
-	 * @return
-	 */
-	public static java.util.Random getGenerator() {
-		return new MikeraRandom();
-	}
-		
-	/**
-	 * Implementation of Random class using XORShift RNG
-	 * 
-	 * @author Mike Anderson
-	 *
-	 */
-	static final class MikeraRandom extends java.util.Random {
-		private static final long serialVersionUID = 6868944865706425166L;
-
-		private volatile long state=System.nanoTime()|1;
-		
-		protected int next(int bits) {
-			return (int)(nextLong()>>>(64-bits));
-		}
-		
-		public long nextLong() {
-			long a=state;
-			state=Rand.xorShift64(a);
-			return a;
-		}
-		
-		public void setSeed(long seed) {
-			if (seed==0) seed=54384849948L;
-			state=seed;
-		}
-		
-		public long getSeed() {
-			return state;
-		}
-		
-		public boolean equals(Object o) {
-			if (o instanceof MikeraRandom) {
-				return equals((MikeraRandom)o);
-			}
-			return super.equals(o);
-		}
-		
-		public boolean equals(MikeraRandom o) {
-			return state==o.state;
-		}
-		
-		public int hashCode() {
-			return ((int)state)^((int)(state>>>32));
-		}
-	}
-	
-	/**
 	 * Returns true with a given probability
 	 * @param d
 	 * @return
