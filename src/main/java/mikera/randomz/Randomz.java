@@ -1,7 +1,5 @@
 package mikera.randomz;
 
-import java.util.Random;
-
 /**
  * Static method class for random functions
  * 
