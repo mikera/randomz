@@ -12,10 +12,10 @@ public class Probabilities {
 		if (lp0>lp1) {
 			double p1=Math.exp(lp1-lp0);
 			return 1/(1+p1);
-		} else {
-			double p0=Math.exp(lp0-lp1);
-			return p0/(1+p0);
 		}
+		
+		double p0=Math.exp(lp0-lp1);
+		return p0/(1+p0);
 	}
 
 }
