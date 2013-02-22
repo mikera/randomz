@@ -1,5 +1,7 @@
 package mikera.randomz;
 
+import java.util.List;
+
 /**
  * Static pseudo-random hash functions
  * 
@@ -55,4 +57,37 @@ public class Hash {
 		return (h&Long.MAX_VALUE)*LONG_SCALE_FACTOR;
 	}
 
+	
+	/** 
+	 * Hashcode for a double primitive. Matches Java hashCode.
+	 * 
+	 * @param d
+	 * @return
+	 */
+	public static final int hashCode(double d) {
+		return hashCode(Double.doubleToLongBits(d));
+	}
+	
+	/**
+	 * Hashcode for a long primitive Matches Java hashCode.
+	 * @param l
+	 * @return
+	 */
+	public static final int hashCode(long l) {
+		return (int) (l ^ (l >>> 32));
+	}
+	
+	/**
+	 * Hashcode for  list of items. Matches Java hashcode
+	 * @param list
+	 * @return
+	 */
+	public static <T> int hashCode(List<T> list) {
+		int length=list.size();
+		int hashCode = 1;
+		for (int i = 0; i < length; i++) {
+			hashCode = 31 * hashCode + (list.get(i).hashCode());
+		}
+		return hashCode;
+	}
 }
