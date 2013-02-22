@@ -1,5 +1,7 @@
 package mikera.util;
 
+import mikera.randomz.Hash;
+
 /**
  * Implementation of Random class using XORShift RNG
  * 
@@ -42,6 +44,6 @@ public final class Random extends java.util.Random {
 	}
 	
 	public int hashCode() {
-		return ((int)state)^((int)(state>>>32));
+		return Hash.hashCode(state);
 	}
 }
