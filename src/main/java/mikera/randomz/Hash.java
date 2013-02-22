@@ -57,6 +57,15 @@ public class Hash {
 		return (h&Long.MAX_VALUE)*LONG_SCALE_FACTOR;
 	}
 
+	/**
+	 * Hashcode for an int, defined as the value of the int itself for consistency with java.lang.Integer
+	 * 
+	 * @param value
+	 * @return
+	 */
+	public static final int hashCode(int value) {
+		return value;
+	}
 	
 	/** 
 	 * Hashcode for a double primitive. Matches Java hashCode.
