@@ -18,7 +18,7 @@ public final class Random extends java.util.Random {
 	}
 	
 	public Random(long state) {
-		state=ensureState(state);
+		this.state=ensureState(state);
 	}
 		
 	private static final long ensureState(long l) {
@@ -51,6 +51,7 @@ public final class Random extends java.util.Random {
 		return super.equals(o);
 	}
 	
+	@Override 
 	public Random clone() {
 		return new Random(this.state);
 	}
