@@ -5,6 +5,8 @@ import mikera.randomz.Hash;
 /**
  * Implementation of Random class using XORShift RNG
  * 
+ * Not thread safe: designed for use in single threaded contexts
+ * 
  * @author Mike Anderson
  *
  */
