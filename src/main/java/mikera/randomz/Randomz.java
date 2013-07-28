@@ -15,5 +15,9 @@ public class Randomz {
 	public static java.util.Random getGenerator() {
 		return new mikera.util.Random();
 	}
+	
+	public static java.util.Random getGenerator(long seed) {
+		return new mikera.util.Random(seed);
+	}
 
 }

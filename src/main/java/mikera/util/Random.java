@@ -1,7 +1,7 @@
 package mikera.util;
 
 import mikera.randomz.Hash;
-
+ 
 /**
  * Implementation of Random class using XORShift RNG
  * 
@@ -11,8 +11,21 @@ import mikera.randomz.Hash;
 public final class Random extends java.util.Random {
 	private static final long serialVersionUID = 6868944865706425166L;
 
-	private volatile long state=System.nanoTime()|1;
+	private long state=ensureState(System.nanoTime());
 	
+	public Random() {
+		
+	}
+	
+	public Random(long state) {
+		state=ensureState(state);
+	}
+		
+	private static final long ensureState(long l) {
+		if (l==0) return 54384849948L;
+		return l;
+	}
+
 	protected int next(int bits) {
 		return (int)(nextLong()>>>(64-bits));
 	}
@@ -24,8 +37,7 @@ public final class Random extends java.util.Random {
 	}
 	
 	public void setSeed(long seed) {
-		if (seed==0) seed=54384849948L;
-		state=seed;
+		state=ensureState(seed);
 	}
 	
 	public long getSeed() {
@@ -37,6 +49,10 @@ public final class Random extends java.util.Random {
 			return equals((Random)o);
 		}
 		return super.equals(o);
+	}
+	
+	public Random clone() {
+		return new Random(this.state);
 	}
 	
 	public boolean equals(Random o) {
