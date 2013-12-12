@@ -30,7 +30,7 @@ public class Hash {
 				hash(x,y)+Long.rotateLeft(longHash(Double.doubleToRawLongBits(z)),17)));
 	}
 	
-	public static final long hash (double x, double y, double z, double t) {
+	public static final long hash (double x, double y, double z, double t) {		
 		return longHash(longHash(
 				hash(x,y,z)+Long.rotateLeft(longHash(Double.doubleToRawLongBits(t)),17)));
 	}
