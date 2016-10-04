@@ -28,16 +28,19 @@ public final class Random extends java.util.Random {
 		return l;
 	}
 
+	@Override
 	protected int next(int bits) {
 		return (int)(nextLong()>>>(64-bits));
 	}
 	
+	@Override
 	public long nextLong() {
 		long a=state;
 		state=Rand.xorShift64(a);
 		return a;
 	}
 	
+	@Override
 	public void setSeed(long seed) {
 		state=ensureState(seed);
 	}
@@ -46,6 +49,7 @@ public final class Random extends java.util.Random {
 		return state;
 	}
 	
+	@Override
 	public boolean equals(Object o) {
 		if (o instanceof Random) {
 			return equals((Random)o);
@@ -62,6 +66,7 @@ public final class Random extends java.util.Random {
 		return state==o.state;
 	}
 	
+	@Override
 	public int hashCode() {
 		return Hash.hashCode(state);
 	}
